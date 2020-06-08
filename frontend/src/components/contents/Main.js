@@ -6,6 +6,7 @@ import {
   LoginPage,
   AnimalPicturePickerPage,
   SignUpPage,
+  CatBreedsPage
 } from "./pages";
 
 import { Route } from "react-router-dom";
@@ -23,6 +24,9 @@ const Main = () => (
     </Route>
     <Route path="/signup">
       <SignUpPage />
+    </Route>
+    <Route path="/catbreeds">
+      <CatBreedsPage />
     </Route>
   </div>
 );
