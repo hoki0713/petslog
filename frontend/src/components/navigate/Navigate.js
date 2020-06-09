@@ -13,6 +13,7 @@ const Navigate = () => (
       <Nav className="mr-auto">
         <Link className="nav-link" to="/">Home</Link>
         <Link className="nav-link" to="/catbreeds">Cat Breeds</Link>
+        <Link className="nav-link" to="/dogbreeds">Dog Breeds</Link>
         <Link className="nav-link" to="/animal-picture-picker">Aminal Picture Picker</Link>
         <Link className="nav-link" to="/login">Login</Link>
       </Nav>

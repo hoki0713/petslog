@@ -1,4 +1,4 @@
-.Header {
+.header {
     background-color: #00B5AD;
     color: white;
     font-size: 2rem;
@@ -8,7 +8,11 @@
     margin-bottom: 2rem;
 }
 
-.Header-img {
+.header-img {
     width: 50rem;
     margin: 0 auto;
+}
+
+.header-title {
+    color: black;
 }
