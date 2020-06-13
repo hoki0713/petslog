@@ -15,9 +15,9 @@ const CatList = ({cats}) => {
           <th>Temperament</th>
         </thead>
         <tbody>
-          {cats.map(cat => (
+          {cats.map((cat, i) => (
             <tr>
-              <td>{cat.seq}</td>
+              <td>{i+1}</td>
               <td><Image className="cat-image" src={cat.imgUrl} /></td>
               <td>{cat.breed}</td>
               <td>{cat.lifespan}</td>

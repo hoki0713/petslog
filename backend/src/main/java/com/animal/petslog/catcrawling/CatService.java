@@ -1,22 +1,22 @@
 package com.animal.petslog.catcrawling;
 
-import java.util.ArrayList;
+import com.animal.petslog.CatBreedRepository;
+
+import java.sql.SQLException;
 import java.util.List;
 
 public class CatService {
-    private final CatBreedsCrawler catBreedsCrawler;
-    private List<Cat> cats;
+    private final CatBreedRepository catBreedRepository;
 
-
-    public CatService(CatBreedsCrawler catBreedsCrawler) {
-        this.catBreedsCrawler = catBreedsCrawler;
-        this.cats = new ArrayList<>();
+    public CatService(CatBreedRepository catBreedRepository) {
+        this.catBreedRepository = catBreedRepository;
     }
 
     public List<Cat> getCatBreedsList() {
-        if (cats.isEmpty()) {
-            cats = catBreedsCrawler.crawlBreedsListCats();
+        try {
+            return catBreedRepository.get();
+        } catch (SQLException throwables) {
+            throw new RuntimeException(throwables);
         }
-        return cats;
     }
 }

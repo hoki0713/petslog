@@ -3,7 +3,6 @@ package com.animal.petslog;
 import com.animal.petslog.catcrawling.CatBreedsCrawler;
 import com.animal.petslog.catcrawling.CatService;
 import com.animal.petslog.catcrawling.CatsEndpoint;
-import com.animal.petslog.dogcrawling.Dog;
 import com.animal.petslog.dogcrawling.DogBreedsCrawler;
 import com.animal.petslog.dogcrawling.DogService;
 import com.animal.petslog.dogcrawling.DogsEndpoint;
@@ -17,10 +16,14 @@ public class AppConfig {
     public AccountsEndpoint accountsEndpoint() {
         return new AccountsEndpoint();
     }
+    @Bean
+    public ConnectionFactory connectionFactory() {
+        return new ConnectionFactory();
+    }
 
     @Bean
-    public CatBreedsCrawler catBreedsCrawler( ) {
-        return new CatBreedsCrawler();
+    public CatBreedRepository catBreedRepository(ConnectionFactory connectionFactory) {
+        return new CatBreedRepository(connectionFactory.createConnection());
     }
 
     @Bean
@@ -29,8 +32,8 @@ public class AppConfig {
     }
 
     @Bean
-    public CatService catService(CatBreedsCrawler catBreedsCrawler) {
-        return new CatService(catBreedsCrawler);
+    public CatService catService(CatBreedRepository catBreedRepository) {
+        return new CatService(catBreedRepository);
     }
 
     @Bean
