@@ -37,8 +37,8 @@ public class AppConfig {
     }
 
     @Bean
-    public DogBreedsCrawler dogBreedsCrawler() {
-        return new DogBreedsCrawler();
+    public DogBreedRepository dogBreedRepository(ConnectionFactory connectionFactory) {
+        return new DogBreedRepository(connectionFactory.createConnection());
     }
 
     @Bean
@@ -47,7 +47,7 @@ public class AppConfig {
     }
 
     @Bean
-    public DogService dogService(DogBreedsCrawler dogBreedsCrawler) {
-        return new DogService(dogBreedsCrawler);
+    public DogService dogService(DogBreedRepository dogBreedRepository) {
+        return new DogService(dogBreedRepository);
     }
 }

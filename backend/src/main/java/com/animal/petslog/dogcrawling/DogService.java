@@ -1,21 +1,22 @@
 package com.animal.petslog.dogcrawling;
 
-import java.util.ArrayList;
+import com.animal.petslog.DogBreedRepository;
+
+import java.sql.SQLException;
 import java.util.List;
 
 public class DogService {
-    private final DogBreedsCrawler dogBreedsCrawler;
-    private List<Dog> dogs;
+    private final DogBreedRepository dogBreedRepository;
 
-    public DogService(DogBreedsCrawler dogBreedsCrawler) {
-        this.dogBreedsCrawler = dogBreedsCrawler;
-        this.dogs = new ArrayList<>();
+    public DogService(DogBreedRepository dogBreedRepository) {
+        this.dogBreedRepository = dogBreedRepository;
     }
 
     public List<Dog> getDogBreedsList() {
-        if (dogs.isEmpty()) {
-            dogs = dogBreedsCrawler.crawlBreedsListDogs();
+        try {
+            return dogBreedRepository.get();
+        } catch (SQLException throwables) {
+            throw new RuntimeException(throwables);
         }
-        return dogs;
     }
 }

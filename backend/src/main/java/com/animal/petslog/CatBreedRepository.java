@@ -15,7 +15,9 @@ public class CatBreedRepository {
     }
 
     public void insert(List<Cat> cats) throws SQLException {
-        PreparedStatement preparedStatement = this.connection.prepareStatement("INSERT INTO catbreed (name, min_life, max_life, origin, imgurl, temperament) VALUES(?,?,?,?,?,?)");
+        PreparedStatement preparedStatement = this.connection
+                .prepareStatement(
+                        "INSERT INTO catbreed (name, min_life, max_life, origin, imgurl, temperament) VALUES(?,?,?,?,?,?)");
         for (Cat cat: cats) {
             preparedStatement.setString(1, cat.getBreed());
             Pattern pattern = Pattern.compile("Lifespan: ([0-9]{1,2})-([0-9]{1,2}) years");

@@ -15,9 +15,9 @@ const DogList = ({ dogs }) => {
           <th>Intelligence</th>
         </thead>
         <tbody>
-          {dogs.map((dog) => (
+          {dogs.map((dog, i) => (
             <tr>
-              <td>{dog.seq}</td>
+              <td>{i+1}</td>
               <td><Image className="dog-image" src={dog.imgUrl} /></td>
               <td>{dog.breed}</td>
               <td>{dog.lifespan}</td>
