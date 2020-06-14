@@ -3,7 +3,9 @@ package com.animal.petslog;
 import com.animal.petslog.account.AccountService;
 import com.animal.petslog.account.PasswordHasher;
 import com.animal.petslog.account.SaltFactory;
+import com.animal.petslog.authentication.AuthenticationService;
 import com.animal.petslog.catcrawling.CatService;
+import com.animal.petslog.endpoint.AuthenticationEndpoint;
 import com.animal.petslog.endpoint.CatsEndpoint;
 import com.animal.petslog.dogcrawling.DogService;
 import com.animal.petslog.endpoint.DogsEndpoint;
@@ -44,6 +46,16 @@ public class AppConfig {
     @Bean
     public ConnectionFactory connectionFactory() {
         return new ConnectionFactory();
+    }
+
+    @Bean
+    public AuthenticationService authenticationService(AccountRepository accountRepository, PasswordHasher passwordHasher) {
+        return new AuthenticationService(accountRepository, passwordHasher);
+    }
+
+    @Bean
+    public AuthenticationEndpoint authenticationEndpoint(AuthenticationService authenticationService) {
+        return new AuthenticationEndpoint(authenticationService);
     }
 
     @Bean
