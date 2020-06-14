@@ -1,0 +1,11 @@
+.dog-image {
+    max-width: 5rem;
+}
+
+.pagination {
+    justify-content: center;
+ }
+
+ .page-btn {
+     cursor: pointer;
+ }

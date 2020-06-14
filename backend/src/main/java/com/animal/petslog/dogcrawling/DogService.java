@@ -1,6 +1,6 @@
 package com.animal.petslog.dogcrawling;
 
-import com.animal.petslog.DogBreedRepository;
+import com.animal.petslog.repository.DogBreedRepository;
 
 import java.sql.SQLException;
 import java.util.List;

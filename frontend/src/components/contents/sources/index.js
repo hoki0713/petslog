@@ -1,9 +1,11 @@
-import CatList from './CatList';
-import DogList from './DogList';
 import CatBreedsPagination from './CatBreedsPagination';
+import CatPosts from './CatPosts';
+import DogPosts from './DogPosts';
+import DogBreedsPagination from './DogBreedsPagination';
 
 export {
-    CatList,
-    DogList,
-    CatBreedsPagination
+    CatBreedsPagination,
+    CatPosts,
+    DogPosts,
+    DogBreedsPagination
 }

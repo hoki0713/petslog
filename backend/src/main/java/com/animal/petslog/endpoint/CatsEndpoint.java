@@ -1,5 +1,7 @@
-package com.animal.petslog.catcrawling;
+package com.animal.petslog.endpoint;
 
+import com.animal.petslog.catcrawling.Cat;
+import com.animal.petslog.catcrawling.CatService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

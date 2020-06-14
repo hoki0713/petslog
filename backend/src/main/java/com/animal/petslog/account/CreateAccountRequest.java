@@ -1,4 +1,4 @@
-package com.animal.petslog.endpoint;
+package com.animal.petslog.account;
 
 public class CreateAccountRequest {
     private String email, password, name, type;

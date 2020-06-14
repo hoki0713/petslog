@@ -1,4 +1,4 @@
-package com.animal.petslog;
+package com.animal.petslog.repository;
 
 import com.animal.petslog.catcrawling.Cat;
 
@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CatBreedRepository {
-    Connection connection;
+    private final Connection connection;
     public CatBreedRepository(Connection connection) {
         this.connection = connection;
     }

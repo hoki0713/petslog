@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { CatList, CatBreedsPagination } from '../sources';
+import { CatPosts, CatBreedsPagination } from '../sources';
 
 const CatBreedsPage = () => {
   const [cats, setCats] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrenctPage] = useState(1);
-  const [catsPerPage] = useState(10);
+  const [catsPerPage] = useState(15);
 
   useEffect(() => {
       const fetchData = async () => {
@@ -23,15 +23,16 @@ const CatBreedsPage = () => {
       fetchData();
   }, []);
 
-  const indexOfLastPost = currentPage * catsPerPage;
-  const indexOfFirstPage = indexOfLastPost - catsPerPage;
-  const currentPosts = cats.slice(indexOfFirstPage, indexOfLastPost);
+  const indexOfLastCat = currentPage * catsPerPage;
+  const indexOfFirstCat = indexOfLastCat - catsPerPage;
+  const currentPosts = cats.slice(indexOfFirstCat, indexOfLastCat);
 
   const paginate = (pageNumber) => setCurrenctPage(pageNumber);
 
   return (
     <div>
-        <CatList cats={currentPosts} loading={loading}/>
+        <CatBreedsPagination catsPerPage={catsPerPage} totalCats={cats.length} paginate={paginate}/>
+        <CatPosts cats={currentPosts} loading={loading} startidx={indexOfFirstCat+1}/>
         <CatBreedsPagination catsPerPage={catsPerPage} totalCats={cats.length} paginate={paginate}/>
     </div>
 

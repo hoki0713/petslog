@@ -1,4 +1,5 @@
 import React from "react";
+import "./Cat.css";
 
 const CatBreedsPagination = ({ catsPerPage, totalCats, paginate }) => {
   const pageNumbers = [];
@@ -8,17 +9,21 @@ const CatBreedsPagination = ({ catsPerPage, totalCats, paginate }) => {
   }
 
   return (
-    <div>
-      <ul className="pagination">
-        {pageNumbers.map((number) => (
-          <li key={number} className="page-item">
-            <a onClick={() => paginate(number)} href="catbreeds" className="page-link">
-              {number}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul className="pagination">
+      {pageNumbers.map((number) => (
+        <li key={number} className="page-item">
+          <span
+            onClick={() => {
+              paginate(number);
+              window.scrollTo(0, 0);
+            }}
+            className="page-link page-btn"
+          >
+            {number}
+          </span>
+        </li>
+      ))}
+    </ul>
   );
 };
 

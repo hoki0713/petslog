@@ -1,22 +1,48 @@
 import React, { useState, useEffect } from "react";
-import { DogList } from '../sources'
+import { DogPosts, DogBreedsPagination } from "../sources";
 
 const DogBreedsPage = () => {
   const [dogs, setDogs] = useState([]);
-  
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [dogsPerPage] = useState(15);
+
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       const response = await fetch("http://localhost:8080/dogs/breedslist");
       if (response.status === 200) {
         const json = await response.json();
         setDogs(json);
+        setLoading(false);
       } else {
         console.log("failed to fetch: " + response.status);
       }
-    }
+    };
     fetchData();
   }, []);
-  return <DogList dogs={dogs} />
+
+  const indexOfLastDog = currentPage * dogsPerPage;
+  const indexOfFirstDog = indexOfLastDog - dogsPerPage;
+  const currentPosts = dogs.slice(indexOfFirstDog, indexOfLastDog);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  return (
+    <div>
+      <DogBreedsPagination
+        dogsPerPage={dogsPerPage}
+        totalDogs={dogs.length}
+        paginate={paginate}
+      />
+      <DogPosts dogs={currentPosts} loading={loading} startidx={indexOfFirstDog + 1} />
+      <DogBreedsPagination
+        dogsPerPage={dogsPerPage}
+        totalDogs={dogs.length}
+        paginate={paginate}
+      />
+    </div>
+  );
 };
 
 export default DogBreedsPage;
