@@ -21,7 +21,7 @@ const LoginPage = () => {
     if(response.status === 200 ) {
       const json = await response.json();
       alert(`Hi, ${json.name}`)
-      history.push("/")
+      history.push("/contents")
     } else {
       alert("Wrong Access!!!")
     }

@@ -4,6 +4,8 @@ import HomePage from './HomePage';
 import SignUpPage from './SignUpPage';
 import CatBreedsPage from './CatBreedsPage';
 import DogBreedsPage from './DogBreedsPage';
+import ContentsPage from './ContentsPage';
+import QuizPage from './QuizPage';
 
 export { 
     AnimalPicturePickerPage, 
@@ -11,5 +13,7 @@ export {
     HomePage, 
     SignUpPage, 
     CatBreedsPage,
-    DogBreedsPage
+    DogBreedsPage,
+    ContentsPage,
+    QuizPage
 }

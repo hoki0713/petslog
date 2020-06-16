@@ -2,6 +2,8 @@ package com.animal.petslog.account;
 
 import com.animal.petslog.repository.AccountRepository;
 
+import java.util.Optional;
+
 public class AccountService {
     private final SaltFactory saltFactory;
     private final PasswordHasher passwordHasher;
@@ -22,4 +24,7 @@ public class AccountService {
     }
 
 
+    public Optional<Account> getAccountDetail(String email) {
+        return accountRepository.getByEmail(email);
+    }
 }

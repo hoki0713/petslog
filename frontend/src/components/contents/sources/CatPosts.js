@@ -5,6 +5,7 @@ const CatPosts = ({ cats, loading, startidx }) => {
   if (loading) {
     return <h2>Loading...</h2>;
   }
+  
   return (
     <div>
       <table className="table">

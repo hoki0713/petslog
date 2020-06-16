@@ -46,6 +46,7 @@ public class CatBreedRepository {
         ResultSet resultSet = statement.executeQuery("SELECT * FROM catbreed");
         while(resultSet.next()) {
             result.add(Cat.builder()
+                    .seq(resultSet.getInt(1))
                     .breed(resultSet.getString(2))
                     .lifespan(String.format("%d~%d",resultSet.getInt(3),resultSet.getInt(4)))
                     .origin(resultSet.getString(5))

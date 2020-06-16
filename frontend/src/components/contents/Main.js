@@ -7,7 +7,9 @@ import {
   AnimalPicturePickerPage,
   SignUpPage,
   CatBreedsPage,
-  DogBreedsPage
+  DogBreedsPage,
+  ContentsPage,
+  QuizPage
 } from "./pages";
 
 import { Route } from "react-router-dom";
@@ -31,6 +33,12 @@ const Main = () => (
     </Route>
     <Route path="/dogbreeds">
       <DogBreedsPage />
+    </Route>
+    <Route path="/contents">
+      <ContentsPage />
+    </Route>
+    <Route path="/quiz">
+      <QuizPage />
     </Route>
   </div>
 );
