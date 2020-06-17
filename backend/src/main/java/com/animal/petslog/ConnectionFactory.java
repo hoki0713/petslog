@@ -9,7 +9,7 @@ public class ConnectionFactory {
     public Connection createConnection(){
         Properties connectionProps = new Properties();
         connectionProps.put("user", "root");
-        connectionProps.put("password", "mariadb");
+        connectionProps.put("password", "maria");
 
         try {
             return DriverManager.getConnection("jdbc:mariadb://localhost/petslog",connectionProps);
