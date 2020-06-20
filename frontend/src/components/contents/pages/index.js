@@ -6,6 +6,7 @@ import CatBreedsPage from './CatBreedsPage';
 import DogBreedsPage from './DogBreedsPage';
 import ContentsPage from './ContentsPage';
 import QuizPage from './QuizPage';
+import AccountInfoPage from './AccountInfoPage';
 
 export { 
     AnimalPicturePickerPage, 
@@ -15,5 +16,6 @@ export {
     CatBreedsPage,
     DogBreedsPage,
     ContentsPage,
-    QuizPage
+    QuizPage,
+    AccountInfoPage
 }

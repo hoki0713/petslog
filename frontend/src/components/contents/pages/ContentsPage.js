@@ -11,7 +11,7 @@ const ContentsPage = () => (
           <div className="card-text">
             <AccountInfo />
           </div>
-          <Link to="/security">
+          <Link to="/account">
             <span className="card-link">Edit</span>
           </Link>
         </div>

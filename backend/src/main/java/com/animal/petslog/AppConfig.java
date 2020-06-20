@@ -4,12 +4,11 @@ import com.animal.petslog.account.AccountService;
 import com.animal.petslog.account.PasswordHasher;
 import com.animal.petslog.account.SaltFactory;
 import com.animal.petslog.authentication.AuthenticationService;
+import com.animal.petslog.authentication.JwtParser;
+import com.animal.petslog.authentication.JwtTokenFactory;
 import com.animal.petslog.catcrawling.CatService;
-import com.animal.petslog.endpoint.AuthenticationEndpoint;
-import com.animal.petslog.endpoint.CatsEndpoint;
+import com.animal.petslog.endpoint.*;
 import com.animal.petslog.dogcrawling.DogService;
-import com.animal.petslog.endpoint.DogsEndpoint;
-import com.animal.petslog.endpoint.AccountsEndpoint;
 import com.animal.petslog.repository.AccountRepository;
 import com.animal.petslog.repository.CatBreedRepository;
 import com.animal.petslog.repository.DogBreedRepository;
@@ -18,6 +17,22 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AppConfig {
+
+    @Bean
+    public AccountEndpoint accountEndpoint(JwtParser jwtParser, AccountService accountService) {
+        return new AccountEndpoint(jwtParser, accountService);
+    }
+
+    @Bean
+    public JwtParser jwtParser() {
+        return new JwtParser(System.getenv("secretKey"));
+    }
+
+    @Bean
+    public JwtTokenFactory jwtTokenFactory() {
+        return new JwtTokenFactory(System.getenv("secretKey"));
+    }
+
     @Bean
     public AccountsEndpoint accountsEndpoint(AccountService accountService) {
         return new AccountsEndpoint(accountService);
@@ -49,8 +64,8 @@ public class AppConfig {
     }
 
     @Bean
-    public AuthenticationService authenticationService(AccountRepository accountRepository, PasswordHasher passwordHasher) {
-        return new AuthenticationService(accountRepository, passwordHasher);
+    public AuthenticationService authenticationService(AccountRepository accountRepository, PasswordHasher passwordHasher, JwtTokenFactory jwtTokenFactory) {
+        return new AuthenticationService(accountRepository, passwordHasher, jwtTokenFactory);
     }
 
     @Bean

@@ -1,23 +1,47 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import "./Navigate.css";
 
 import { Link } from "react-router-dom";
+import { AuthenticationContext } from "../context";
 
-const Navigate = () => (
-  <div className="Navigate">
-    <Navbar bg="dark" variant="dark">
-      <Link to="/">
-        <Navbar.Brand>Animal Lover</Navbar.Brand>
-      </Link>
-      <Nav className="mr-auto">
-        <Link className="nav-link" to="/">Home</Link>
-        <Link className="nav-link" to="/catbreeds">Cat Breeds</Link>
-        <Link className="nav-link" to="/dogbreeds">Dog Breeds</Link>
-        <Link className="nav-link" to="/login">Login</Link>
-      </Nav>
-    </Navbar>
-  </div>
-);
+const Navigate = () => {
+  const { jwt, setJwt } = useContext(AuthenticationContext);
+
+  return (
+    <div className="Navigate">
+      <Navbar bg="dark" variant="dark">
+        <Link to="/">
+          <Navbar.Brand>Animal Lover</Navbar.Brand>
+        </Link>
+        <Nav className="mr-auto">
+          <Link className="nav-link" to="/">
+            Home
+          </Link>
+          <Link className="nav-link" to="/catbreeds">
+            Cat Breeds
+          </Link>
+          <Link className="nav-link" to="/dogbreeds">
+            Dog Breeds
+          </Link>
+          {jwt && (
+            <Link
+              className="nav-link"
+              to="/logout"
+              onClick={() => setJwt(null)}
+            >
+              Logout
+            </Link>
+          )}
+          {!jwt && (
+            <Link className="nav-link" to="/login">
+              Login
+            </Link>
+          )}
+        </Nav>
+      </Navbar>
+    </div>
+  );
+};
 
 export default Navigate;

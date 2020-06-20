@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Form, Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import "./LoginPage.css";
+import { AuthenticationContext } from "../../context";
 
 const LoginPage = () => {
+  const {setJwt} = useContext(AuthenticationContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
@@ -20,7 +23,7 @@ const LoginPage = () => {
     });
     if(response.status === 200 ) {
       const json = await response.json();
-      alert(`Hi, ${json.name}`)
+      setJwt(json.jwt);
       history.push("/contents")
     } else {
       alert("Wrong Access!!!")

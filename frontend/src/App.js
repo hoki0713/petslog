@@ -6,15 +6,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import { Header } from "./components";
 import { PostContainer } from "./containers";
+import { AuthenticationProvider } from './components/context';
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Header />
-        <PostContainer />
-      </div>
-    </BrowserRouter>
+    <AuthenticationProvider>
+      <BrowserRouter>
+        <div className="App">
+          <Header />
+          <PostContainer />
+        </div>
+      </BrowserRouter>
+    </AuthenticationProvider>
   );
 }
 

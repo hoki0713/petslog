@@ -9,7 +9,8 @@ import {
   CatBreedsPage,
   DogBreedsPage,
   ContentsPage,
-  QuizPage
+  QuizPage,
+  AccountInfoPage
 } from "./pages";
 
 import { Route } from "react-router-dom";
@@ -39,6 +40,9 @@ const Main = () => (
     </Route>
     <Route path="/quiz">
       <QuizPage />
+    </Route>
+    <Route path="/account">
+      <AccountInfoPage />
     </Route>
   </div>
 );
