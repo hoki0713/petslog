@@ -25,7 +25,6 @@ public class AccountsEndpoint {
     @PostMapping
     public ResponseEntity<Void> create(@RequestBody CreateAccountRequest createAccountRequest) {
         accountService.setUpNewAccount(createAccountRequest);
-        if ()
         return ResponseEntity.ok(null);
     }
 

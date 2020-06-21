@@ -36,7 +36,7 @@ const Navigate = () => {
           {jwt && (
             <Link
               className="nav-link"
-              to="/logout"
+              to="/login"
               onClick={() => setJwt(null)}
             >
               Logout
