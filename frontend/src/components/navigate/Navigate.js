@@ -23,6 +23,11 @@ const Navigate = () => {
           <Link className="nav-link" to="/dogbreeds">
             Dog Breeds
           </Link>
+          {jwt && (
+            <Link className="nav-link" to="/contents">
+              Contents
+            </Link>
+          )}
           {!jwt && (
             <Link className="nav-link" to="/login">
               Login
@@ -37,6 +42,7 @@ const Navigate = () => {
               Logout
             </Link>
           )}
+          
         </Nav>
       </Navbar>
     </div>
