@@ -47,6 +47,17 @@ public class AccountsEndpoint {
         }
     }
 
-    @
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteAccount(@PathVariable("id") Integer id,
+                                                 @RequestHeader("accessToken") String accessToken) {
+        String email = jwtParser.parseJwt(accessToken);
+        Optional<Account> accountDetail = accountService.getAccountDetail(email);
+        if( accountDetail.get().getId() == id ) {
+            accountService.deleteAccount(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
 
 }

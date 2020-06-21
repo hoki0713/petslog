@@ -34,4 +34,8 @@ public class AccountService {
     public Optional<Account> getAccountDetail(String email) {
         return accountRepository.getByEmail(email);
     }
+
+    public void deleteAccount(Integer id) {
+        accountRepository.delete(id);
+    }
 }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useHistory } from 'react-router-dom';
 import { Button } from "react-bootstrap";
 import { useAccount } from "../hooks";
 import { AuthenticationContext } from "../../context";
@@ -7,7 +8,9 @@ const AccountInfoPage = () => {
   const account = useAccount();
   const [newName, setNewName] = useState("");
   const [type, setType] = useState("");
-  const { jwt } = useContext(AuthenticationContext);
+  const { jwt, setJwt } = useContext(AuthenticationContext);
+
+  const history = useHistory();
 
   useEffect(() => {
     if (account) {
@@ -27,6 +30,19 @@ const AccountInfoPage = () => {
     });
     if (response.status === 200) {
       alert("Success!");
+    }
+  }
+
+  async function handleDelete(e) {
+    e.preventDefault();
+    const response = await fetch(`/accounts/${account.id}`, {
+      method: "delete",
+      headers: { accessToken: jwt},
+    });
+    if(response.status === 204) {
+      setJwt(null);
+      alert("Suceed to delete");
+      history.push("/");
     }
   }
 
@@ -109,7 +125,7 @@ const AccountInfoPage = () => {
         >
           Save
         </Button>
-        <Button variant="danger" type="submit">
+        <Button variant="danger" type="submit" onClick={handleDelete}>
           Delete
         </Button>
       </div>

@@ -41,6 +41,17 @@ public class AccountRepository {
 
     }
 
+    public void delete(Integer id) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM account WHERE id = ?");
+            preparedStatement.setInt(1, id);
+            preparedStatement.execute();
+            connection.commit();
+        } catch (SQLException throwables) {
+            throw new RuntimeException(throwables);
+        }
+    }
+
     public Optional<Account> getById(int id) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM account WHERE id = ?");
@@ -75,4 +86,6 @@ public class AccountRepository {
             return Optional.empty();
         }
     }
+
+
 }
