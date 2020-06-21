@@ -34,7 +34,7 @@ public class AccountsEndpoint {
         return ResponseEntity.ok(account.get());
     }
 
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Account> updateAccount(@PathVariable("id") Integer id,
                                                  @RequestHeader("accessToken") String accessToken,
                                                  @RequestBody UpdateAccountRequest updateAccountRequest) {
@@ -46,5 +46,7 @@ public class AccountsEndpoint {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
+
+    @
 
 }
