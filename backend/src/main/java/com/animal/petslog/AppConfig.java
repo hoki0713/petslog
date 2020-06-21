@@ -34,8 +34,8 @@ public class AppConfig {
     }
 
     @Bean
-    public AccountsEndpoint accountsEndpoint(AccountService accountService) {
-        return new AccountsEndpoint(accountService);
+    public AccountsEndpoint accountsEndpoint(AccountService accountService, JwtParser jwtParser) {
+        return new AccountsEndpoint(accountService, jwtParser);
     }
 
     @Bean

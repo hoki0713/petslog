@@ -18,9 +18,16 @@ public class AccountService {
     public Account setUpNewAccount(CreateAccountRequest createAccountRequest) {
         String salt = saltFactory.createSalt();
         String hashedPassword = passwordHasher.hashPassword(createAccountRequest.getPassword(), salt);
-        Account account = new Account(createAccountRequest.getEmail(), hashedPassword, salt, createAccountRequest.getName(), createAccountRequest.getType());
+        Account account = new Account(0, createAccountRequest.getEmail(), hashedPassword, salt, createAccountRequest.getName(), createAccountRequest.getType());
         accountRepository.insert(account);
         return account;
+    }
+
+    public Account updateAccount(UpdateAccountRequest updateAccountRequest, int id) {
+        Account account = accountRepository.getById(id).orElseThrow(() -> new RuntimeException());
+        Account newAccount = new Account(id, account.getEmail(), account.getHashedPassword(), account.getSalt(), updateAccountRequest.getName(), updateAccountRequest.getType());
+        accountRepository.update(newAccount);
+        return newAccount;
     }
 
 

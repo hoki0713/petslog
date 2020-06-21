@@ -10,7 +10,11 @@ const AuthenticationProvider = ({ children }) => {
   }, []);
 
   const setNewJwt = (jwt) => {
-    localStorage.setItem("accessToken", jwt);
+    if (jwt === null) {
+      localStorage.removeItem("accessToken");
+    } else {
+      localStorage.setItem("accessToken", jwt);
+    }
     setJwt(jwt);
   };
 

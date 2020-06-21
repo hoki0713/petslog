@@ -7,7 +7,6 @@ import { AuthenticationContext } from "../context";
 
 const Navigate = () => {
   const { jwt, setJwt } = useContext(AuthenticationContext);
-
   return (
     <div className="Navigate">
       <Navbar bg="dark" variant="dark">
@@ -24,6 +23,11 @@ const Navigate = () => {
           <Link className="nav-link" to="/dogbreeds">
             Dog Breeds
           </Link>
+          {!jwt && (
+            <Link className="nav-link" to="/login">
+              Login
+            </Link>
+          )}
           {jwt && (
             <Link
               className="nav-link"
@@ -31,11 +35,6 @@ const Navigate = () => {
               onClick={() => setJwt(null)}
             >
               Logout
-            </Link>
-          )}
-          {!jwt && (
-            <Link className="nav-link" to="/login">
-              Login
             </Link>
           )}
         </Nav>

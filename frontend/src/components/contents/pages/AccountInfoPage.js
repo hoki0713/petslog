@@ -1,68 +1,88 @@
-import React from "react";
-import { Form, Col, Button } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Button } from "react-bootstrap";
+import { useAccount } from "../hooks";
 
-const AccountInfoPage = () => (
-  <div className="form">
-    <h3>Account Information</h3>
+const AccountInfoPage = () => {
+  const account = useAccount();
+  const [newName, setNewName] = useState("");
 
-    <div className="table mx-auto">
-      <div>
-        <td>Email</td>
-        <td>email from accountInfo</td>
-      </div>
-      <div>
-        <td>Password</td>
-        <td><Button variant="primary" type="submit">Change Password</Button></td>
-      </div>
-    </div>
+  useEffect(() => {
+    if (account) {
+      setNewName(account.name);
+    }
+  }, [account]);
 
-    <Form.Group controlId="formGridPassword">
-      <Form.Row>
-        <Form.Label className="mr-5 ml-5 my-auto">Password</Form.Label>
-        <Button variant="primary" type="submit">
-          Change Password
+  if (!account) {
+    return <h1>Loading...</h1>;
+  } else {
+    return (
+      <div className="form">
+        <h3>Account Information</h3>
+
+        <div className="table mx-auto" style={{ width: "40%", margin: "3rem" }}>
+          <div>
+            <td style={{ width: "30%", textAlign: "left" }}>Email</td>
+            <td>{account.email}</td>
+          </div>
+          <div>
+            <td style={{ width: "30%", textAlign: "left" }}>Password</td>
+            <td>
+              <Button variant="primary" type="submit">
+                Change Password
+              </Button>
+            </td>
+          </div>
+          <div>
+            <td style={{ width: "30%", textAlign: "left" }}>Name</td>
+            <td>
+              <input type="text" value={newName} onChange={(e) => {setNewName(e.target.value)}}/>
+            </td>
+          </div>
+          <div>
+            <td style={{ width: "30%", textAlign: "left" }}>Type</td>
+            <td>
+              <div style={{ textAlign: "left" }}>
+                <input
+                  type="radio"
+                  id="type1"
+                  name="type"
+                  value="dog-person"
+                  style={{ marginRight: "5px" }}
+                />
+                <label for="type1">dog-person</label>
+              </div>
+              <div style={{ textAlign: "left" }}>
+                <input
+                  type="radio"
+                  id="type1"
+                  name="type"
+                  value="cat-person"
+                  style={{ marginRight: "5px" }}
+                />
+                <label for="type1">cat-person</label>
+              </div>
+              <div style={{ textAlign: "left" }}>
+                <input
+                  type="radio"
+                  id="type1"
+                  name="type"
+                  value="animal-person"
+                  style={{ marginRight: "5px" }}
+                />
+                <label for="type1">animal-person</label>
+              </div>
+            </td>
+          </div>
+        </div>
+        <Button variant="primary" type="submit" className="mr-3">
+          Save
         </Button>
-      </Form.Row>
-    </Form.Group>
-
-    <Form.Group controlId="formGridAddress1">
-      <Form.Label>Address</Form.Label>
-      <Form.Control placeholder="1234 Main St" />
-    </Form.Group>
-
-    <Form.Group controlId="formGridAddress2">
-      <Form.Label>Address 2</Form.Label>
-      <Form.Control placeholder="Apartment, studio, or floor" />
-    </Form.Group>
-
-    <Form.Row>
-      <Form.Group as={Col} controlId="formGridCity">
-        <Form.Label>City</Form.Label>
-        <Form.Control />
-      </Form.Group>
-
-      <Form.Group as={Col} controlId="formGridState">
-        <Form.Label>State</Form.Label>
-        <Form.Control as="select" defaultValue="Choose...">
-          <option>Choose...</option>
-          <option>...</option>
-        </Form.Control>
-      </Form.Group>
-
-      <Form.Group as={Col} controlId="formGridZip">
-        <Form.Label>Zip</Form.Label>
-        <Form.Control />
-      </Form.Group>
-    </Form.Row>
-
-    <Form.Group id="formGridCheckbox">
-      <Form.Check type="checkbox" label="Check me out" />
-    </Form.Group>
-
-    <Button variant="primary" type="submit">
-      Submit
-    </Button>
-  </div>
-);
+        <Button variant="danger" type="submit">
+          Delete
+        </Button>
+      </div>
+    );
+  }
+};
 
 export default AccountInfoPage;
